@@ -61,6 +61,7 @@ markers.add(notreDame);
 map.setMarkers(markers);
 ```
 | Map | Source |
+| --- | --- |
 | ![Markers](src/test/resources/markers.png) | `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=YOUR-API-KEY` |
 
 ### Custom Markers
