@@ -43,6 +43,7 @@ map.setMaptype(Maptype.hybrid);
 ![Location](src/test/resources/location.png)
 
 Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY`
+
 ---
 ### Markers
 
@@ -65,6 +66,7 @@ map.setMarkers(markers);
 ![Markers](src/test/resources/markers.png)
 
 Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=YOUR-API-KEY`
+
 ---
 ### Custom Markers
 
