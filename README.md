@@ -39,8 +39,15 @@ StaticMap map = new StaticMap(400, 200, googleApiKey);
 map.setLocation("Eiffeltower", 16);
 map.setMaptype(Maptype.hybrid);
 ```
-Map | Source
-![Location](src/test/resources/location.png) | `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY`
+<table>
+	<tr>
+		<td>
+			![Location](src/test/resources/location.png)
+		</td>
+		<td>Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY`
+		</td>
+	</tr>
+</table>
 
 ### Markers
 
@@ -60,9 +67,9 @@ markers.add(notreDame);
 
 map.setMarkers(markers);
 ```
-| Map | Source |
-| --- | --- |
-| ![Markers](src/test/resources/markers.png) | `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=YOUR-API-KEY` |
+![Markers](src/test/resources/markers.png)
+
+Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=YOUR-API-KEY` |
 
 ### Custom Markers
 
