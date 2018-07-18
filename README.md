@@ -1,6 +1,6 @@
 # google-static-map-creator
 
-Provides a Java-API for creating static Google Maps links. [see Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide)
+A Java-API for creating static Google Maps links. [Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide)
 
 Features:
 - easy to use and type safe
@@ -35,7 +35,7 @@ The rest of this document is a list of examples. You will see the source code an
 Just present a location without any markers or polylines.
 
 ```java
-StaticMap map = new StaticMap(400, 200, googleApiKey);
+StaticMap map = new StaticMap(400, 200, APIKEY);
 map.setLocation("Eiffeltower", 16);
 map.setMaptype(Maptype.hybrid);
 ```
@@ -46,7 +46,7 @@ map.setMaptype(Maptype.hybrid);
 If there is more than one annotation present, the map's center and zoom will be set automatically.
 
 ```java
-StaticMap map = new StaticMap(400, 200, googleApiKey);
+StaticMap map = new StaticMap(400, 200, APIKEY);
 map.setMaptype(Maptype.hybrid);
 
 List<StaticMarker> markers = new ArrayList<>();
@@ -64,7 +64,7 @@ map.setMarkers(markers);
 ### Custom Markers
 
 ```java
-StaticMap map = new StaticMap(400, 200, googleApiKey);
+StaticMap map = new StaticMap(400, 200, APIKEY);
 map.setMaptype(Maptype.hybrid);
 
 StaticMarker m1 = new StaticMarker(50.844943, 6.856998);
