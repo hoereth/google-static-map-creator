@@ -42,9 +42,9 @@ map.setMaptype(Maptype.hybrid);
 <table>
 	<tr>
 		<td>
-			![Location](src/test/resources/location.png)
+			<img src="src/test/resources/location.png"/>
 		</td>
-		<td>Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY`
+		<td>Source: <pre>https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY</pre>
 		</td>
 	</tr>
 </table>
