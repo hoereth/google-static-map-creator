@@ -39,7 +39,7 @@ StaticMap map = new StaticMap(400, 200, APIKEY);
 map.setLocation("Eiffeltower", 16);
 map.setMaptype(Maptype.hybrid);
 ```
-![Location](https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o)
+<img src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o"/>
 
 ### Markers
 
@@ -59,7 +59,7 @@ markers.add(notreDame);
 
 map.setMarkers(markers);
 ```
-![Markers](https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o)
+<img src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color:orange|label:N|48.853%2C2.349983&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o"/>
 
 ### Custom Markers
 
@@ -75,4 +75,4 @@ StaticMarker m2 = new StaticMarker(50.844782, 6.856730);
 m2.setCustomIconUrl("http://cableparks.info/poi_2.png");
 map.addMarker(m2);
 ```
-<img src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color%3Aorange%7Clabel%3AN%7C48.853%2C2.349983&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o"/>
+<img src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon%3Ahttp%3A%2F%2Fcableparks.info%2Fpoi.png|scale%3A2|50.844944%2C6.856998&markers=icon%3Ahttp%3A%2F%2Fcableparks.info%2Fpoi_2.png|scale%3A2|50.844784%2C6.85673&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o"/>

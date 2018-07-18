@@ -149,7 +149,7 @@ public class StaticMap implements Serializable {
 			String url = builder.build().toString();
 
 			// Folgende Escapes brauchen wir nicht. Verschwenden nur Platz.
-			return url.replace("%3A", ":").replace("%7C", "|").replace("%40", "@");
+			return url.replace("%7C", "|").replace("%40", "@");
 		} catch (URISyntaxException e) {
 			throw new RuntimeException("kann nicht sein", e);
 		}
