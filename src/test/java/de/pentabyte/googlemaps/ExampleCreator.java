@@ -1,16 +1,10 @@
 package de.pentabyte.googlemaps;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.junit.Test;
 
 import de.pentabyte.googlemaps.StaticMap.Maptype;
@@ -70,17 +64,18 @@ public class ExampleCreator {
 
 		File myFile = new File("src/test/resources/" + filename);
 
-		CloseableHttpClient client = HttpClients.createDefault();
-		try (CloseableHttpResponse response = client.execute(new HttpGet(map.toString()))) {
-			HttpEntity entity = response.getEntity();
-			if (response.getStatusLine().getStatusCode() != 200)
-				throw new RuntimeException(response.getStatusLine().toString());
-			if (entity != null) {
-				try (FileOutputStream outstream = new FileOutputStream(myFile)) {
-					entity.writeTo(outstream);
-				}
-			}
-		}
+		// CloseableHttpClient client = HttpClients.createDefault();
+		// try (CloseableHttpResponse response = client.execute(new
+		// HttpGet(map.toString()))) {
+		// HttpEntity entity = response.getEntity();
+		// if (response.getStatusLine().getStatusCode() != 200)
+		// throw new RuntimeException(response.getStatusLine().toString());
+		// if (entity != null) {
+		// try (FileOutputStream outstream = new FileOutputStream(myFile)) {
+		// entity.writeTo(outstream);
+		// }
+		// }
+		// }
 	}
 
 }
