@@ -7,6 +7,7 @@
 	<version>2.0-SNAPSHOT</version>
 	<name>Google Static Map Creator</name>
 	<description>JAVA API for creating Google Static Map URLs.</description>
+	<url>https://github.com/hoereth/google-static-map-creator</url>
 
 	<licenses>
 		<license>
@@ -26,6 +27,12 @@
 			</roles>
 		</developer>
 	</developers>
+	
+	<scm>
+		<url>https://github.com/hoereth/google-static-map-creator</url>
+		<connection>scm:git:https://github.com/hoereth/google-static-map-creator.git</connection>
+		<tag>i18n-maven-plugin-1.0.0</tag>
+	</scm>
 
 	<properties>
 		<maven.compiler.source>1.7</maven.compiler.source>
