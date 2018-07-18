@@ -1,1 +1,1 @@
-https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=YOUR-API-KEY
+https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o

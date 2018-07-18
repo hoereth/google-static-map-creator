@@ -11,8 +11,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Test;
 
 import de.pentabyte.googlemaps.StaticMap.Maptype;
@@ -22,20 +20,11 @@ import de.pentabyte.googlemaps.StaticMap.Maptype;
  *
  */
 public class ExampleCreator {
-	private static String GOOGLEAPI_PROPERTYNAME = "GOOGLEAPI";
-	private String googleApiKey;
-
-	@ClassRule
-	public static SystemPropertyPreCondition check = new SystemPropertyPreCondition(GOOGLEAPI_PROPERTYNAME);
-
-	@Before
-	public void before() {
-		googleApiKey = System.getProperty(GOOGLEAPI_PROPERTYNAME);
-	}
+	private static String APIKEY = "AIzaSyDV7nYgIcNdNaoqzt6pk0yxObvp0bUtH9o";
 
 	@Test
 	public void createLocation() throws ClientProtocolException, IOException {
-		StaticMap map = new StaticMap(400, 200, googleApiKey);
+		StaticMap map = new StaticMap(400, 200, APIKEY);
 		map.setLocation(new StaticLocation("Eiffeltower"), 16);
 		map.setMaptype(Maptype.hybrid);
 
@@ -44,7 +33,7 @@ public class ExampleCreator {
 
 	@Test
 	public void createMarkers() throws ClientProtocolException, IOException {
-		StaticMap map = new StaticMap(400, 200, googleApiKey);
+		StaticMap map = new StaticMap(400, 200, APIKEY);
 		map.setMaptype(Maptype.hybrid);
 
 		map.addMarker(new StaticMarker("Eiffeltower"));
@@ -59,7 +48,7 @@ public class ExampleCreator {
 
 	@Test
 	public void createCustomMarker() throws ClientProtocolException, IOException {
-		StaticMap map = new StaticMap(400, 200, googleApiKey);
+		StaticMap map = new StaticMap(400, 200, APIKEY);
 		map.setMaptype(Maptype.hybrid);
 
 		StaticMarker m1 = new StaticMarker(50.844943, 6.856998);
@@ -76,7 +65,7 @@ public class ExampleCreator {
 	private void create(StaticMap map, String filename) throws ClientProtocolException, IOException {
 		File myUrl = new File("src/test/resources/" + filename + ".txt");
 		FileWriter writer = new FileWriter(myUrl);
-		writer.write(map.toString().replace(googleApiKey, "YOUR-API-KEY"));
+		writer.write(map.toString());
 		writer.close();
 
 		File myFile = new File("src/test/resources/" + filename);
