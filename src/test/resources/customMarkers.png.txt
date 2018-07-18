@@ -1,0 +1,1 @@
+https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon%3Ahttp%3A%2F%2Fcableparks.info%2Fpoi.png%7Cscale%3A2%7C50.844944%2C6.856998&markers=icon%3Ahttp%3A%2F%2Fcableparks.info%2Fpoi_2.png%7Cscale%3A2%7C50.844784%2C6.85673&key=YOUR-API-KEY
