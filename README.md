@@ -3,7 +3,7 @@
 Java-API for creating static Google Maps links. [Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide)
 
 Features:
-- easy to use and type safe
+- type safety
 - polyline encoding (comes with a built-in compressor to satisfy Google Map URLs' length limitations)
 - URL encoding
 - validations (e.g. you cannot add more than 15 geocoded markers to one map) 
