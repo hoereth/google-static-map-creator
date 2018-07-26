@@ -159,7 +159,7 @@ public class StaticMap implements Serializable {
 	 * @return
 	 */
 	private Integer getZoom() {
-		if (markers != null && markers.size() == 1 && paths.size() == 0) {
+		if ((markers != null && markers.size() == 1) && (paths == null || paths.size() == 0)) {
 			StaticMarker marker = markers.get(0);
 			if (marker.getZoom() != null) {
 				return marker.getZoom();
