@@ -95,6 +95,11 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>de.pentabyte.tools</groupId>
+				<artifactId>i18n-maven-plugin</artifactId>
+				<version>1.2.1</version>
+			</plugin>
 		</plugins>
 	</build>
 </project>
