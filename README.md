@@ -48,18 +48,15 @@ Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiff
 If there is more than one annotation present, the map's center and zoom will be set automatically.
 
 ```java
-StaticMap map = new StaticMap(400, 200, APIKEY);
+StaticMap map = new StaticMap(400, 200, googleApiKey);
 map.setMaptype(Maptype.hybrid);
 
-List<StaticMarker> markers = new ArrayList<>();
-markers.add(new StaticMarker("Eiffeltower"));
+map.addMarker(new StaticMarker("Eiffeltower"));
 
 StaticMarker notreDame = new StaticMarker(48.853000, 2.349983);
 notreDame.setLabel('N');
-notreDame.setColor("orange");
-markers.add(notreDame);
-
-map.setMarkers(markers);
+notreDame.setColor(StaticColor.orange);
+map.addMarker(notreDame);
 ```
 ![Markers](src/test/resources/markers.png)
 
@@ -82,3 +79,23 @@ map.addMarker(m2);
 ![Custom Markers](src/test/resources/customMarkers.png)
 
 Source: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon:http:%2F%2Fcableparks.info%2Fpoi.png%7Cscale:2%7C50.844944%2C6.856998&markers=icon:http:%2F%2Fcableparks.info%2Fpoi_2.png%7Cscale:2%7C50.844784%2C6.85673`
+
+### Encoded Polyline
+
+```
+List<StaticLatLon> coords = new ArrayList<>();
+coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+coords.add(new StaticLatLonImpl(40.796855, -73.949294));
+coords.add(new StaticLatLonImpl(40.764311, -73.973011));
+coords.add(new StaticLatLonImpl(40.768060, -73.981840));
+coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+StaticPath centralPark = new StaticPath(coords);
+centralPark.setColor(StaticColor.red);
+centralPark.setFillColor("black");
+
+StaticMap map = new StaticMap(400, 200, googleApiKey);
+map.addPath(centralPark);
+```
+![Encoded Polyline](src/test/resources/encodedPolyline.png)
+
+Source: https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=color:red%7Cfillcolor:black%7Cenc:oz_xFr%7DkbMdVqv@jjEfsCmVdv@cjE%7BrC

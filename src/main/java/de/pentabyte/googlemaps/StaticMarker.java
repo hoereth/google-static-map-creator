@@ -44,12 +44,11 @@ public class StaticMarker implements Serializable {
 
 	/**
 	 * @param color
-	 *            black, brown, green, purple, yellow, blue, gray, orange, red,
-	 *            white
+	 * 
 	 * @see #setHexColor(String)
 	 */
-	public void setColor(String color) {
-		this.color = color;
+	public void setColor(StaticColor color) {
+		this.color = color.name();
 	}
 
 	public Character getLabel() {

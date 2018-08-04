@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -47,7 +49,7 @@ public class ExampleCreator {
 
 		StaticMarker notreDame = new StaticMarker(48.853000, 2.349983);
 		notreDame.setLabel('N');
-		notreDame.setColor("orange");
+		notreDame.setColor(StaticColor.orange);
 		map.addMarker(notreDame);
 
 		create(map, "markers.png");
@@ -67,6 +69,24 @@ public class ExampleCreator {
 		map.addMarker(m2);
 
 		create(map, "customMarkers.png");
+	}
+
+	@Test
+	public void createEncodedPolyline() throws ClientProtocolException, IOException {
+		List<StaticLatLon> coords = new ArrayList<>();
+		coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+		coords.add(new StaticLatLonImpl(40.796855, -73.949294));
+		coords.add(new StaticLatLonImpl(40.764311, -73.973011));
+		coords.add(new StaticLatLonImpl(40.768060, -73.981840));
+		coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+		StaticPath centralPark = new StaticPath(coords);
+		centralPark.setColor(StaticColor.red);
+		centralPark.setFillColor("black");
+
+		StaticMap map = new StaticMap(400, 200, googleApiKey);
+		map.addPath(centralPark);
+
+		create(map, "encodedPolyline.png");
 	}
 
 	private void create(StaticMap map, String filename) throws ClientProtocolException, IOException {

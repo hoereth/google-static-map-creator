@@ -21,11 +21,18 @@ public class StaticPath implements Serializable {
 	private final List<StaticLatLon> coords;
 	private final String polyline;
 
+	/**
+	 * @param coords
+	 *            Path will eventually be converted to an encoded polyline.
+	 */
 	public StaticPath(List<StaticLatLon> coords) {
 		this.coords = coords;
 		this.polyline = null;
 	}
 
+	/**
+	 * @param polyline
+	 */
 	public StaticPath(String polyline) {
 		this.coords = null;
 		this.polyline = polyline;
@@ -54,8 +61,8 @@ public class StaticPath implements Serializable {
 		return color;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setColor(StaticColor color) {
+		this.color = color.name();
 	}
 
 	public String getFillColor() {
@@ -83,12 +90,12 @@ public class StaticPath implements Serializable {
 	}
 
 	/**
-	 * Die Koordinaten werden derart komprimiert, dass benachbarte Punkte, die
-	 * nicht voneinander unterscheidbar wären, ignoriert werden. Danach werden
-	 * so viele Zwischenpunkte weggelassen, bis die Google Map URL nicht mehr
-	 * Gefahr läuft, zu lange zu werden.
+	 * The coordinates will be compressed in such a way that coordinates which
+	 * are too close together will be ignored. After this step, as many coords
+	 * will be omitted until is short enough to comply with Google Map URL
+	 * length.
 	 */
-	public String formatFor(double minDistanceMeters, int maxPoints) {
+	protected String formatFor(double minDistanceMeters, int maxPoints) {
 		List<String> defs = new ArrayList<>();
 
 		if (color != null)
@@ -134,8 +141,8 @@ public class StaticPath implements Serializable {
 	}
 
 	/**
-	 * Je nach Abstand wird der geeignete Algorithmus gewählt. Daher sind keine
-	 * linearen Ergebnisse zu erwarten.
+	 * Depending on the distance, an exact or approximate algorithm will be
+	 * chosen.
 	 * 
 	 * @return Abstand in Metern.
 	 */
@@ -151,8 +158,7 @@ public class StaticPath implements Serializable {
 	}
 
 	/**
-	 * @return Exakter Abstand in Metern im Sinne einer
-	 *         Erdoberflächenprojektion.
+	 * @return Exact distance in meters / geodesic.
 	 */
 	protected static double distance(double lat1, double lon1, double lat2, double lon2) {
 		double dLat = Math.toRadians(lat2 - lat1);
@@ -180,9 +186,9 @@ public class StaticPath implements Serializable {
 	}
 
 	/**
-	 * @return Abstand in Metern im Sinne einer planaren Projektion. Die
-	 *         Genauigkeit nimmt mit der Größe des Abstands ab und wird nur bis
-	 *         zu einem Abstand von bis zu 4 Grad empfohlen.
+	 * @return Distance in meters according to planar projection. Accuracy will
+	 *         decrease with the distance and can only be recommended for
+	 *         distances of up to 4 degrees.
 	 */
 	protected static double distanceApproximate(double lat1, double lon1, double lat2, double lon2) {
 		if (lon1 < 0)
