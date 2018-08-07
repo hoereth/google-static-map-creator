@@ -8,7 +8,7 @@ package de.pentabyte.googlemaps;
  * 
  * @author michael hoereth
  */
-public interface StaticLatLon {
+public interface LatLon {
 	double getLatitude();
 
 	double getLongitude();

@@ -26,7 +26,7 @@ import de.pentabyte.googlemaps.StaticMap.Maptype;
  */
 public class ExampleCreator {
 	private static String GOOGLEAPI_PROPERTYNAME = "GOOGLEAPI";
-	private String googleApiKey;
+	private String googleApiKey = System.getProperty(GOOGLEAPI_PROPERTYNAME);
 
 	@ClassRule
 	public static SystemPropertyPreCondition check = new SystemPropertyPreCondition(GOOGLEAPI_PROPERTYNAME);
@@ -34,7 +34,7 @@ public class ExampleCreator {
 	@Test
 	public void createLocation() throws ClientProtocolException, IOException {
 		StaticMap map = new StaticMap(400, 200, googleApiKey);
-		map.setLocation(new StaticLocation("Eiffeltower"), 16);
+		map.setLocation(new Location("Eiffeltower"), 16);
 		map.setMaptype(Maptype.hybrid);
 
 		create(map, "location.png");
@@ -49,7 +49,7 @@ public class ExampleCreator {
 
 		StaticMarker notreDame = new StaticMarker(48.853000, 2.349983);
 		notreDame.setLabel('N');
-		notreDame.setColor(StaticColor.orange);
+		notreDame.setColor(Color.orange);
 		map.addMarker(notreDame);
 
 		create(map, "markers.png");
@@ -73,15 +73,15 @@ public class ExampleCreator {
 
 	@Test
 	public void createEncodedPolyline() throws ClientProtocolException, IOException {
-		List<StaticLatLon> coords = new ArrayList<>();
-		coords.add(new StaticLatLonImpl(40.800568, -73.958185));
-		coords.add(new StaticLatLonImpl(40.796855, -73.949294));
-		coords.add(new StaticLatLonImpl(40.764311, -73.973011));
-		coords.add(new StaticLatLonImpl(40.768060, -73.981840));
-		coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+		List<LatLon> coords = new ArrayList<>();
+		coords.add(new LatLonImpl(40.800568, -73.958185));
+		coords.add(new LatLonImpl(40.796855, -73.949294));
+		coords.add(new LatLonImpl(40.764311, -73.973011));
+		coords.add(new LatLonImpl(40.768060, -73.981840));
+		coords.add(new LatLonImpl(40.800568, -73.958185));
 		StaticPath centralPark = new StaticPath(coords);
-		centralPark.setColor(StaticColor.red);
-		centralPark.setFillColor("black");
+		centralPark.setColor(Color.red);
+		centralPark.setFillColor(Color.black);
 
 		StaticMap map = new StaticMap(400, 200, googleApiKey);
 		map.addPath(centralPark);

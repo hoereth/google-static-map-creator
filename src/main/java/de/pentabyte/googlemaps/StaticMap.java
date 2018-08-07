@@ -16,6 +16,10 @@ import org.apache.http.client.utils.URIBuilder;
  * @see <a href="https://github.com/hoereth/google-static-map-creator">github
  *      readme file</a> for examples.
  */
+/**
+ * @author michael hoereth
+ *
+ */
 public class StaticMap implements Serializable {
 	private static final long serialVersionUID = 155958884165520846L;
 	private static String API_URL = "https://maps.googleapis.com/maps/api/staticmap";
@@ -23,8 +27,9 @@ public class StaticMap implements Serializable {
 	private final int width, height;
 	private String apiKey;
 	private Maptype maptype;
+	private Format format = Format.PNG;
 	private int scale = 1;
-	private StaticLocation center;
+	private Location center;
 	private Integer zoom;
 	private List<StaticMarker> markers;
 	private List<StaticPath> paths;
@@ -34,8 +39,17 @@ public class StaticMap implements Serializable {
 		roadmap, satellite, hybrid, terrain
 	}
 
+	/**
+	 * The dimensions (points) will be multiplied with the scale factor.
+	 * 
+	 * @param width
+	 *            points
+	 * @param height
+	 *            points
+	 * @param apiKey
+	 */
 	public StaticMap(int width, int height, String apiKey) {
-		if (width > 640)
+		if (width > 2048)
 			throw new IllegalArgumentException("width must not exceed 640");
 		this.width = width;
 		this.height = height;
@@ -46,11 +60,23 @@ public class StaticMap implements Serializable {
 		return scale;
 	}
 
+	/**
+	 * Default: 1.
+	 * 
+	 * @param scale
+	 */
 	public void setScale(int scale) {
+		if (scale < 1 || scale > 4 || scale == 3)
+			throw new IllegalArgumentException("scale must be 1,2 or 4");
 		this.scale = scale;
 	}
 
-	public void setLocation(StaticLocation center, int zoom) {
+	/**
+	 * @param zoom
+	 *            1: World 5: Landmass/continent 10: City 15: Streets 20:
+	 *            Buildings
+	 */
+	public void setLocation(Location center, int zoom) {
 		this.center = center;
 		this.zoom = zoom;
 	}
@@ -120,6 +146,8 @@ public class StaticMap implements Serializable {
 				builder.addParameter("scale", String.valueOf(scale));
 			if (maptype != null)
 				builder.addParameter("maptype", maptype.name());
+			if (format != null && Format.PNG != format)
+				builder.addParameter("format", format.getValue());
 			if (getZoom() != null)
 				builder.addParameter("zoom", String.valueOf(getZoom()));
 
@@ -157,7 +185,8 @@ public class StaticMap implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return If only one annotation present: the annotation's zoom. null,
+	 *         otherwise.
 	 */
 	private Integer getZoom() {
 		if ((markers != null && markers.size() == 1) && (paths == null || paths.size() == 0)) {
@@ -177,6 +206,22 @@ public class StaticMap implements Serializable {
 		this.maptype = maptype;
 	}
 
+	public Format getFormat() {
+		return format;
+	}
+
+	/**
+	 * {@link Format#PNG}, if none specified.
+	 * 
+	 * @param format
+	 */
+	public void setFormat(Format format) {
+		this.format = format;
+	}
+
+	/**
+	 * Any markers or paths present?
+	 */
 	public boolean hasContent() {
 		return markers.size() > 0 || paths.size() > 0;
 	}
@@ -197,13 +242,9 @@ public class StaticMap implements Serializable {
 		private double latMax = Double.NEGATIVE_INFINITY;
 		private double lonMin = Double.POSITIVE_INFINITY;
 		private double lonMax = Double.NEGATIVE_INFINITY;
-		private double latCenter;
-		private double lonCenter;
-		private double latRange;
-		private double lonRange;
 
-		protected InternalBoundingBox(Collection<? extends StaticLatLon> coords) {
-			for (StaticLatLon coord : coords) {
+		protected InternalBoundingBox(Collection<? extends LatLon> coords) {
+			for (LatLon coord : coords) {
 				if (coord.getLatitude() > latMax)
 					latMax = coord.getLatitude();
 				if (coord.getLatitude() < latMin)
@@ -213,86 +254,12 @@ public class StaticMap implements Serializable {
 				if (coord.getLongitude() < lonMin)
 					lonMin = coord.getLongitude();
 			}
-			latCenter = (latMin + latMax) / 2;
-			lonCenter = (lonMin + lonMax) / 2;
-			latRange = latMax - latMin;
-			lonRange = lonMax - lonMin;
-		}
-
-		/**
-		 * Liegt die Koordinate innherhalb der Boundigbox?
-		 */
-		protected boolean contains(StaticLatLon coord) {
-			double lat = coord.getLatitude();
-			double lon = coord.getLongitude();
-			return lat >= latMin && lat <= latMax && lon >= lonMin && lon <= lonMax;
-		}
-
-		/**
-		 * Liegt die Koordinate innerhalb des Quadrats, das die BoundingBox
-		 * umschließt?
-		 */
-		protected boolean squareContains(StaticLatLon coord) {
-			return squareContains(coord, 1);
-		}
-
-		/**
-		 * Liegt die Koordinate innerhalb des Quadrats, das die BoundingBox
-		 * umschließt? (inklusive Abweichung, z.B: 1.1)
-		 */
-		protected boolean squareContains(StaticLatLon coord, double deviation) {
-			double latEdge = latRange * deviation;
-			double lonEdge = lonRange * deviation;
-			double latMin = latCenter - latEdge / 2;
-			double latMax = latCenter + latEdge / 2;
-			double lonMin = lonCenter - lonEdge / 2;
-			double lonMax = lonCenter + lonEdge / 2;
-
-			double lat = coord.getLatitude();
-			double lon = coord.getLongitude();
-			return lat >= latMin && lat <= latMax && lon >= lonMin && lon <= lonMax;
-		}
-
-		protected double getLatitude() {
-			return latCenter;
-		}
-
-		protected double getLongitude() {
-			return lonCenter;
 		}
 
 		protected double getHeightMeters() {
-			StaticLatLon upperLeft = new StaticLatLonImpl(latMax, lonMin);
-			StaticLatLon bottomLeft = new StaticLatLonImpl(latMin, lonMin);
+			LatLon upperLeft = new LatLonImpl(latMax, lonMin);
+			LatLon bottomLeft = new LatLonImpl(latMin, lonMin);
 			return StaticPath.distanceAuto(upperLeft, bottomLeft);
-		}
-
-		protected StaticLatLon getUpperLeft() {
-			return new StaticLatLonImpl(latMax, lonMin);
-		}
-
-		protected StaticLatLon getUpperRight() {
-			return new StaticLatLonImpl(latMax, lonMax);
-		}
-
-		protected StaticLatLon getLowerLeft() {
-			return new StaticLatLonImpl(latMin, lonMin);
-		}
-
-		protected StaticLatLon getLowerRight() {
-			return new StaticLatLonImpl(latMin, lonMax);
-		}
-
-		protected StaticLatLon getCenter() {
-			return new StaticLatLonImpl(latCenter, lonCenter);
-		}
-
-		protected double getLatRange() {
-			return latRange;
-		}
-
-		protected double getLonRange() {
-			return lonRange;
 		}
 	}
 }

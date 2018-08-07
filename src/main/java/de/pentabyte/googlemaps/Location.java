@@ -5,7 +5,7 @@ package de.pentabyte.googlemaps;
  * 
  * @author michael hoereth
  */
-public class StaticLocation {
+public class Location {
 	private final String query;
 	private boolean geocodingRequired;
 
@@ -13,7 +13,7 @@ public class StaticLocation {
 	 * @param query
 	 *            anything which can be geocoded to a coordinate by Google
 	 */
-	public StaticLocation(String query) {
+	public Location(String query) {
 		this.query = query;
 		this.geocodingRequired = true;
 	}
@@ -21,7 +21,7 @@ public class StaticLocation {
 	/**
 	 * Will create a location which will not require geocoding.
 	 */
-	public StaticLocation(double latitude, double longitude) {
+	public Location(double latitude, double longitude) {
 		this((float) latitude + "," + (float) longitude);
 		this.geocodingRequired = false;
 	}

@@ -5,11 +5,11 @@ package de.pentabyte.googlemaps;
  * 
  * @author michael hoereth
  */
-public class StaticLatLonImpl implements StaticLatLon {
+public class LatLonImpl implements LatLon {
 	private final double latitude;
 	private final double longitude;
 
-	public StaticLatLonImpl(double latitude, double longitude) {
+	public LatLonImpl(double latitude, double longitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}

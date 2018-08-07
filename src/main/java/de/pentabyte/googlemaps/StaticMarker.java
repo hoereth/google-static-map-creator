@@ -13,7 +13,7 @@ public class StaticMarker implements Serializable {
 	private static final long serialVersionUID = -2566197476723898328L;
 	private String color;
 	private Character label;
-	private final StaticLocation location;
+	private final Location location;
 	private String customIconUrl;
 	private String anchor;
 	private boolean shadow = true;
@@ -21,11 +21,11 @@ public class StaticMarker implements Serializable {
 	private Integer zIndex;
 
 	public StaticMarker(double lat, double lon) {
-		this.location = new StaticLocation(lat, lon);
+		this.location = new Location(lat, lon);
 	}
 
 	public StaticMarker(String query) {
-		this.location = new StaticLocation(query);
+		this.location = new Location(query);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class StaticMarker implements Serializable {
 	 * 
 	 * @see #setHexColor(String)
 	 */
-	public void setColor(StaticColor color) {
+	public void setColor(Color color) {
 		this.color = color.name();
 	}
 
@@ -95,6 +95,8 @@ public class StaticMarker implements Serializable {
 	 * Only relevant, if this marker will be the only annotation on the map.
 	 * 
 	 * @param zoom
+	 *            1: World 5: Landmass/continent 10: City 15: Streets 20:
+	 *            Buildings
 	 */
 	public void setZoom(Integer zoom) {
 		this.zoom = zoom;

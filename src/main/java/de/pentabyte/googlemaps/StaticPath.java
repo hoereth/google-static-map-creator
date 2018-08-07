@@ -18,14 +18,14 @@ public class StaticPath implements Serializable {
 	private String color;
 	private String fillColor;
 	private Integer weight;
-	private final List<StaticLatLon> coords;
+	private final List<LatLon> coords;
 	private final String polyline;
 
 	/**
 	 * @param coords
 	 *            Path will eventually be converted to an encoded polyline.
 	 */
-	public StaticPath(List<StaticLatLon> coords) {
+	public StaticPath(List<LatLon> coords) {
 		this.coords = coords;
 		this.polyline = null;
 	}
@@ -38,15 +38,15 @@ public class StaticPath implements Serializable {
 		this.polyline = polyline;
 	}
 
-	public List<StaticLatLon> getCoords() {
+	public List<LatLon> getCoords() {
 		return coords;
 	}
 
 	/**
 	 * Lässt nur jeden zweiten Punkt über.
 	 */
-	private static List<StaticLatLon> reduce(List<StaticLatLon> list) {
-		List<StaticLatLon> less = new ArrayList<>();
+	private static List<LatLon> reduce(List<LatLon> list) {
+		List<LatLon> less = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (i % 2 == 0)
 				less.add(list.get(i));
@@ -61,7 +61,7 @@ public class StaticPath implements Serializable {
 		return color;
 	}
 
-	public void setColor(StaticColor color) {
+	public void setColor(Color color) {
 		this.color = color.name();
 	}
 
@@ -69,8 +69,8 @@ public class StaticPath implements Serializable {
 		return fillColor;
 	}
 
-	public void setFillColor(String fillColor) {
-		this.fillColor = fillColor;
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor.name();
 	}
 
 	public void setHexFillColor(String hexFillColor) {
@@ -108,9 +108,9 @@ public class StaticPath implements Serializable {
 			defs.add("weight:" + weight);
 
 		if (coords != null) {
-			List<StaticLatLon> reduced = new ArrayList<>();
-			StaticLatLon lastCoord = null;
-			for (StaticLatLon coord : coords) {
+			List<LatLon> reduced = new ArrayList<>();
+			LatLon lastCoord = null;
+			for (LatLon coord : coords) {
 				if (lastCoord == null || distanceApproximate(lastCoord, coord) > minDistanceMeters) {
 					reduced.add(coord);
 					lastCoord = coord;
@@ -123,7 +123,7 @@ public class StaticPath implements Serializable {
 
 			PolylineEncoder encoder = new PolylineEncoder();
 
-			for (StaticLatLon coord : reduced) {
+			for (LatLon coord : reduced) {
 				encoder.add(coord.getLatitude(), coord.getLongitude());
 			}
 			defs.add("enc:" + encoder.toString());
@@ -136,7 +136,7 @@ public class StaticPath implements Serializable {
 		return StringUtils.join(defs, '|');
 	}
 
-	protected static double distanceAuto(StaticLatLon c1, StaticLatLon c2) {
+	protected static double distanceAuto(LatLon c1, LatLon c2) {
 		return distanceAuto(c1.getLatitude(), c1.getLongitude(), c2.getLatitude(), c2.getLongitude());
 	}
 
@@ -180,7 +180,7 @@ public class StaticPath implements Serializable {
 	 * delta latitude or longitude between your two points does not exceed 4
 	 * decimal degrees.
 	 */
-	protected static double distanceApproximate(StaticLatLon coord1, StaticLatLon coord2) {
+	protected static double distanceApproximate(LatLon coord1, LatLon coord2) {
 		return distanceApproximate(coord1.getLatitude(), coord1.getLongitude(), coord2.getLatitude(),
 				coord2.getLongitude());
 	}
