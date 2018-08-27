@@ -223,7 +223,7 @@ public class StaticMap implements Serializable {
 	 * Any markers or paths present?
 	 */
 	public boolean hasContent() {
-		return markers.size() > 0 || paths.size() > 0;
+		return markers != null && markers.size() > 0 || paths != null && paths.size() > 0;
 	}
 
 	public Locale getLocale() {
