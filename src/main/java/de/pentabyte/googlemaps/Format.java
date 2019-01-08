@@ -30,6 +30,9 @@ public enum Format {
 	 */
 	JPG_BASELINE("jpg-baseline");
 
+	/**
+	 * Google's format name.
+	 */
 	private String value;
 
 	private Format(String value) {

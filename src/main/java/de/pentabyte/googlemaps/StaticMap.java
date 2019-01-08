@@ -15,8 +15,7 @@ import org.apache.http.client.utils.URIBuilder;
  * 
  * @see <a href="https://github.com/hoereth/google-static-map-creator">github
  *      readme file</a> for examples.
- */
-/**
+ * 
  * @author michael hoereth
  *
  */
