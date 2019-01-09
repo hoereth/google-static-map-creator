@@ -1,1 +1,1 @@
-https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color:orange%7Clabel:N%7C48.853%2C2.349983&key=AIzaSyDxhFbE5D8hzWt___2KiZAl_N4aKLf1eMs
+https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color:orange%7Clabel:N%7C48.853%2C2.349983&key=*****

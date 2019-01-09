@@ -90,18 +90,19 @@ public class ExampleCreator {
 	}
 
 	private void create(StaticMap map, String filename) throws ClientProtocolException, IOException {
+		File myFile = new File("src/test/resources/" + filename);
+		String url = map.toString();
+
 		File myUrl = new File("src/test/resources/" + filename + ".txt");
 		FileWriter writer = new FileWriter(myUrl);
-		writer.write(map.toString());
+		writer.write(url.replace(googleApiKey, "*****"));
 		writer.close();
 
-		File myFile = new File("src/test/resources/" + filename);
-
 		CloseableHttpClient client = HttpClients.createDefault();
-		try (CloseableHttpResponse response = client.execute(new HttpGet(map.toString()))) {
+		try (CloseableHttpResponse response = client.execute(new HttpGet(url))) {
 			HttpEntity entity = response.getEntity();
 			if (response.getStatusLine().getStatusCode() != 200)
-				throw new RuntimeException(response.getStatusLine().toString());
+				throw new RuntimeException(response.getStatusLine().toString() + " for URL [" + url + "]");
 			if (entity != null) {
 				try (FileOutputStream outstream = new FileOutputStream(myFile)) {
 					entity.writeTo(outstream);
