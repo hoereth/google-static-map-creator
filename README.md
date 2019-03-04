@@ -15,10 +15,11 @@ Disclaimer: This is a 3rd-party library without affiliations with Google.
 Add this dependency to your pom.xml (artifact available at Maven Central):
 
 ```
+<!-- https://mvnrepository.com/artifact/de.pentabyte/google-static-map-creator -->
 <dependency>
-	<groupId>de.pentabyte</groupId>
-	<artifactId>google-static-map-creator</artifactId>
-	<version>[current version]</version>
+    <groupId>de.pentabyte</groupId>
+    <artifactId>google-static-map-creator</artifactId>
+    <version>2.2.0</version>
 </dependency>
 ```
 
