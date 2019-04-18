@@ -103,4 +103,4 @@ _Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=colo
 
 ### References
 
-* The group event planning platform [GroupEvent.info](https://groupevent.info) uses the google-static-map-creator to render many non-interactive maps on one page for browser performance reasons. 
+* The group event planning platform [GroupEvent.info](https://groupevent.info) uses the google-static-map-creator to render multiple non-interactive maps on one page for browser performance reasons. 
