@@ -100,3 +100,7 @@ map.addPath(centralPark);
 ![Encoded Polyline](src/test/resources/encodedPolyline.png)
 
 _Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=color:red%7Cfillcolor:black%7Cenc:oz_xFr%7DkbMdVqv@jjEfsCmVdv@cjE%7BrC&key=*****`
+
+### References
+
+* The group event planning platform [GroupEvent.info](https://groupevent.info) uses the google-static-map-creator to render many non-interactive maps on one page for browser performance reasons. 
