@@ -30,7 +30,7 @@
 
 	<scm>
 		<url>https://github.com/hoereth/google-static-map-creator</url>
-		<connection>scm:git:https://github.com/hoereth/google-static-map-creator.git</connection>
+		<connection>scm:git:ssh://git@github.com/hoereth/google-static-map-creator.git</connection>
 		<tag>google-static-map-creator-2.0.2</tag>
 	</scm>
 
