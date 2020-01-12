@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to the google static map creator will be documented in this file.
 
-## [2.2.1-SNAPSHOT]
+## [2.3.0-SNAPSHOT]
 ### Fixed
 - StaticMap.hasContent() sometimes caused NPE
+### Added
+- StaticMarker.scale
 
 ## [2.2.0]
 ### Changed

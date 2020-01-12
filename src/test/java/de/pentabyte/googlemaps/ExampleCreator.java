@@ -62,10 +62,12 @@ public class ExampleCreator {
 
 		StaticMarker m1 = new StaticMarker(50.844943, 6.856998);
 		m1.setCustomIconUrl("http://cableparks.info/poi.png");
+		m1.setScale(2);
 		map.addMarker(m1);
 
 		StaticMarker m2 = new StaticMarker(50.844782, 6.856730);
 		m2.setCustomIconUrl("http://cableparks.info/poi_2.png");
+		m2.setScale(2);
 		map.addMarker(m2);
 
 		create(map, "customMarkers.png");

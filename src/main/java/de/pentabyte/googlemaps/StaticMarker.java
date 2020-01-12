@@ -15,6 +15,7 @@ public class StaticMarker implements Serializable {
 	private Character label;
 	private final Location location;
 	private String customIconUrl;
+	private int scale = 1;
 	private String anchor;
 	private boolean shadow = true;
 	private Integer zoom;
@@ -72,6 +73,16 @@ public class StaticMarker implements Serializable {
 		this.customIconUrl = customIconUrl;
 	}
 
+	public Integer getScale() {
+		return scale;
+	}
+
+	public void setScale(Integer scale) {
+		if (scale < 1 || scale > 4 || scale == 3)
+			throw new IllegalArgumentException("scale must be 1,2 or 4");
+		this.scale = scale;
+	}
+
 	public String getAnchor() {
 		return anchor;
 	}
@@ -127,9 +138,11 @@ public class StaticMarker implements Serializable {
 		if (anchor != null)
 			styles.add("anchor:" + anchor);
 
+		if (scale != 1)
+			styles.add("scale:" + scale);
+
 		if (customIconUrl != null) {
 			styles.add("icon:" + customIconUrl);
-			styles.add("scale:2");
 			if (!shadow) {
 				styles.add("shadow:false");
 			}
