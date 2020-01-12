@@ -5,7 +5,7 @@
 	<packaging>jar</packaging>
 	<version>2.3.1-SNAPSHOT</version>
 	<name>Google Static Map Creator</name>
-	<description>JAVA API for creating Google Static Map URLs.</description>
+	<description>📍 JAVA API for creating Google Static Map URLs.</description>
 	<url>https://github.com/hoereth/google-static-map-creator</url>
 
 	<licenses>
