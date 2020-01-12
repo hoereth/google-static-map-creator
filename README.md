@@ -42,7 +42,7 @@ map.setMaptype(Maptype.hybrid);
 ```
 ![Location](src/test/resources/location.png)
 
-_Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=*****`
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&zoom=16&maptype=hybrid&key=*****`
 
 ### Markers
 
@@ -61,7 +61,7 @@ map.addMarker(notreDame);
 ```
 ![Markers](src/test/resources/markers.png)
 
-_Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color:orange%7Clabel:N%7C48.853%2C2.349983&key=*****`
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=Eiffeltower&markers=color:orange%7Clabel:N%7C48.853%2C2.349983&key=*****`
 
 ### Custom Markers
 
@@ -79,7 +79,7 @@ map.addMarker(m2);
 ```
 ![Custom Markers](src/test/resources/customMarkers.png)
 
-_Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon:http:%2F%2Fcableparks.info%2Fpoi.png%7Cscale:2%7C50.844944%2C6.856998&markers=icon:http:%2F%2Fcableparks.info%2Fpoi_2.png%7Cscale:2%7C50.844784%2C6.85673&key=*****`
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon:http:%2F%2Fcableparks.info%2Fpoi.png%7Cscale:2%7C50.844944%2C6.856998&markers=icon:http:%2F%2Fcableparks.info%2Fpoi_2.png%7Cscale:2%7C50.844784%2C6.85673&key=*****`
 
 ### Encoded Polyline
 
@@ -99,7 +99,7 @@ map.addPath(centralPark);
 ```
 ![Encoded Polyline](src/test/resources/encodedPolyline.png)
 
-_Source:_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=color:red%7Cfillcolor:black%7Cenc:oz_xFr%7DkbMdVqv@jjEfsCmVdv@cjE%7BrC&key=*****`
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=color:red%7Cfillcolor:black%7Cenc:oz_xFr%7DkbMdVqv@jjEfsCmVdv@cjE%7BrC&key=*****`
 
 ### References
 
