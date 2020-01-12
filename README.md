@@ -79,7 +79,7 @@ map.addMarker(m2);
 ```
 ![Custom Markers](src/test/resources/customMarkers.png)
 
-_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=icon:http:%2F%2Fcableparks.info%2Fpoi.png%7Cscale:2%7C50.844944%2C6.856998&markers=icon:http:%2F%2Fcableparks.info%2Fpoi_2.png%7Cscale:2%7C50.844784%2C6.85673&key=*****`
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=hybrid&markers=scale:2%7Cicon:http:%2F%2Fcableparks.info%2Fpoi.png%7C50.844944%2C6.856998&markers=scale:2%7Cicon:http:%2F%2Fcableparks.info%2Fpoi_2.png%7C50.844784%2C6.85673&key=*****`
 
 ### Encoded Polyline
 
