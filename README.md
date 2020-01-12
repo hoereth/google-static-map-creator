@@ -1,4 +1,4 @@
-# google-static-map-creator
+# :round_pushpin: google-static-map-creator
 
 Java-API for creating static Google Maps links. [Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide)
 
