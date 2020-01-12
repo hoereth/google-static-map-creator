@@ -19,7 +19,7 @@ Add this dependency to your pom.xml (artifact available at Maven Central):
 <dependency>
     <groupId>de.pentabyte</groupId>
     <artifactId>google-static-map-creator</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 
