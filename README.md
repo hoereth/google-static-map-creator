@@ -46,7 +46,7 @@ _map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&c
 
 ### Markers
 
-If there is more than one annotation present, the map's center and zoom will be set automatically.
+If there is more than one annotation present, the map's center and zoom will be set automatically by Google.
 
 ```java
 StaticMap map = new StaticMap(400, 200, googleApiKey);
