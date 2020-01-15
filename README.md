@@ -1,6 +1,6 @@
 # :round_pushpin: google-static-map-creator
 
-Java-API for creating static Google Maps links. [Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide)
+Java-API for creating static Google Maps links as described in [Static Maps API v2 Docs](https://developers.google.com/maps/documentation/maps-static/dev-guide).
 
 Features:
 - type safety
@@ -14,7 +14,7 @@ Disclaimer: This is a 3rd-party library without affiliations with Google.
 
 Add this dependency to your pom.xml (artifact available at Maven Central):
 
-```
+```xml
 <!-- https://mvnrepository.com/artifact/de.pentabyte/google-static-map-creator -->
 <dependency>
     <groupId>de.pentabyte</groupId>
@@ -85,7 +85,7 @@ _map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&m
 
 ### Encoded Polyline
 
-```
+```java
 List<StaticLatLon> coords = new ArrayList<>();
 coords.add(new StaticLatLonImpl(40.800568, -73.958185));
 coords.add(new StaticLatLonImpl(40.796855, -73.949294));
