@@ -2,6 +2,8 @@
 All notable changes to the google static map creator will be documented in this file.
 
 ## [2.3.1-SNAPSHOT]
+### Changed
+- Java requirement 7 -> 8
 
 ## [2.3.0]
 ### Fixed

@@ -41,10 +41,8 @@ public class StaticMap implements Serializable {
 	/**
 	 * The dimensions (points) will be multiplied with the scale factor.
 	 * 
-	 * @param width
-	 *            points
-	 * @param height
-	 *            points
+	 * @param width  points
+	 * @param height points
 	 * @param apiKey
 	 */
 	public StaticMap(int width, int height, String apiKey) {
@@ -71,9 +69,7 @@ public class StaticMap implements Serializable {
 	}
 
 	/**
-	 * @param zoom
-	 *            1: World 5: Landmass/continent 10: City 15: Streets 20:
-	 *            Buildings
+	 * @param zoom 1: World 5: Landmass/continent 10: City 15: Streets 20: Buildings
 	 */
 	public void setLocation(Location center, int zoom) {
 		this.center = center;
@@ -107,6 +103,10 @@ public class StaticMap implements Serializable {
 	public void addMarker(StaticMarker marker) {
 		if (markers == null) {
 			markers = new ArrayList<>();
+		}
+		long geoCodingRequiredCount = markers.stream().filter(m -> m.location.isGeocodingRequired()).count();
+		if (geoCodingRequiredCount == 15) {
+			throw new IllegalArgumentException("The maximum number of geocoded markers has already been reached.");
 		}
 		markers.add(marker);
 	}

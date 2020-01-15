@@ -13,7 +13,7 @@ public class StaticMarker implements Serializable {
 	private static final long serialVersionUID = -2566197476723898328L;
 	private String color;
 	private Character label;
-	private final Location location;
+	final Location location;
 	private String customIconUrl;
 	private int scale = 1;
 	private String anchor;
