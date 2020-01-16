@@ -1,6 +1,5 @@
 package de.pentabyte.googlemaps;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +8,19 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Represents a Google Static Map Marker.
  */
-public class StaticMarker implements Serializable {
+public class StaticMarker extends Location {
 	private static final long serialVersionUID = -2566197476723898328L;
+
+	public StaticMarker(String query) {
+		super(query);
+	}
+
+	public StaticMarker(double latitude, double longitude) {
+		super(latitude, longitude);
+	}
+
 	private String color;
 	private Character label;
-	final Location location;
 	private String customIconUrl;
 	private int scale = 1;
 	private String anchor;
@@ -21,17 +28,8 @@ public class StaticMarker implements Serializable {
 	private Integer zoom;
 	private Integer zIndex;
 
-	public StaticMarker(double lat, double lon) {
-		this.location = new Location(lat, lon);
-	}
-
-	public StaticMarker(String query) {
-		this.location = new Location(query);
-	}
-
 	/**
-	 * @param hexColor
-	 *            rrggbb value, e.g.: 00FF00 for green.
+	 * @param hexColor rrggbb value, e.g.: 00FF00 for green.
 	 * 
 	 * @see StaticMarker#setColor(String)
 	 */
@@ -57,9 +55,8 @@ public class StaticMarker implements Serializable {
 	}
 
 	/**
-	 * @param label
-	 *            specifies a single uppercase alphanumeric character from the
-	 *            set {A-Z, 0-9}.
+	 * @param label specifies a single uppercase alphanumeric character from the set
+	 *              {A-Z, 0-9}.
 	 */
 	public void setLabel(Character label) {
 		this.label = label;
@@ -88,9 +85,9 @@ public class StaticMarker implements Serializable {
 	}
 
 	/**
-	 * Set the anchor as an x,y point of the icon (such as 10,5), or as a
-	 * predefined alignment using one of the following values: top, bottom,
-	 * left, right, center, topleft, topright, bottomleft, or bottomright.
+	 * Set the anchor as an x,y point of the icon (such as 10,5), or as a predefined
+	 * alignment using one of the following values: top, bottom, left, right,
+	 * center, topleft, topright, bottomleft, or bottomright.
 	 * 
 	 * @param anchor
 	 */
@@ -105,9 +102,7 @@ public class StaticMarker implements Serializable {
 	/**
 	 * Only relevant, if this marker will be the only annotation on the map.
 	 * 
-	 * @param zoom
-	 *            1: World 5: Landmass/continent 10: City 15: Streets 20:
-	 *            Buildings
+	 * @param zoom 1: World 5: Landmass/continent 10: City 15: Streets 20: Buildings
 	 */
 	public void setZoom(Integer zoom) {
 		this.zoom = zoom;
@@ -151,7 +146,7 @@ public class StaticMarker implements Serializable {
 		if (styles.size() > 0)
 			defs.add(StringUtils.join(styles, "|"));
 
-		defs.add(this.location.toString());
+		defs.add(super.toString());
 
 		return StringUtils.join(defs, '|');
 	}

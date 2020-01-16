@@ -1,17 +1,26 @@
 package de.pentabyte.googlemaps;
 
+import java.io.Serializable;
+
 /**
  * A geographic location as used by {@link StaticMap} or {@link StaticMarker}.
  * 
  * @author michael hoereth
  */
-public class Location {
+public class Location implements Serializable {
+	private static final long serialVersionUID = -2890131634409376834L;
+	/**
+	 * what will be sent to Google
+	 */
 	private final String query;
+	/**
+	 * just a note to keep track of those locations which will trigger geocoding at
+	 * Google
+	 */
 	private boolean geocodingRequired;
 
 	/**
-	 * @param query
-	 *            anything which can be geocoded to a coordinate by Google
+	 * @param query anything which can be geocoded to a coordinate by Google
 	 */
 	public Location(String query) {
 		this.query = query;

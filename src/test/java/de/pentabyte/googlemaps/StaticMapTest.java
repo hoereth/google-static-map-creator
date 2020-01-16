@@ -14,7 +14,7 @@ public class StaticMapTest {
 	public void test_geocode_over_maximum() {
 		StaticMap map = new StaticMap(400, 200, null);
 		add15Markers(map);
-		map.addMarker(new StaticMarker("Frankfurt"));
+		map.addVisible(new Location("Frankfurt"));
 	}
 
 	private void add15Markers(StaticMap map) {

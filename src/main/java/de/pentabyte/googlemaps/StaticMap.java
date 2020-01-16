@@ -126,11 +126,21 @@ public class StaticMap implements Serializable {
 		if (markers == null) {
 			markers = new ArrayList<>();
 		}
-		long geoCodingRequiredCount = markers.stream().filter(m -> m.location.isGeocodingRequired()).count();
-		if (geoCodingRequiredCount == 15) {
-			throw new IllegalArgumentException("The maximum number of geocoded markers has already been reached.");
-		}
+		testMaximumGeocodeLocations();
 		markers.add(marker);
+	}
+
+	private void testMaximumGeocodeLocations() {
+		List<Location> locations = new ArrayList<>();
+		if (visibles != null)
+			locations.addAll(visibles);
+		if (markers != null)
+			locations.addAll(markers);
+		long count = locations.stream() //
+				.filter(loc -> loc.isGeocodingRequired()).count();
+		if (count >= 15) {
+			throw new IllegalArgumentException("The maximum number of geocoded locations has already been reached.");
+		}
 	}
 
 	public List<Location> getVisibles() {
@@ -145,6 +155,7 @@ public class StaticMap implements Serializable {
 		if (visibles == null) {
 			visibles = new ArrayList<>();
 		}
+		testMaximumGeocodeLocations();
 		visibles.add(visible);
 	}
 
