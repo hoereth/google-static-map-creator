@@ -119,4 +119,4 @@ _map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&c
 
 ### References
 
-* The group event planning platform [GroupEvent.info](https://groupevent.info) uses the google-static-map-creator to render multiple non-interactive maps on single pages for better browser performance. 
+* The group event planning platform [GroupEvent.info](https://groupevent.info) uses the google-static-map-creator to render multiple non-interactive maps on single pages for better browser performance.
