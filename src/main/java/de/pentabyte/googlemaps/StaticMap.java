@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import org.apache.http.client.utils.URIBuilder;
 
@@ -26,13 +27,15 @@ public class StaticMap implements Serializable {
 	private final int width, height;
 	private String apiKey;
 	private Maptype maptype;
-	private Format format = Format.PNG;
+	private Format format;
 	private int scale = 1;
 	private Location center;
 	private Integer zoom;
 	private List<StaticMarker> markers;
 	private List<StaticPath> paths;
-	private Locale locale;
+	private String language;
+	private String region;
+	private List<Location> visibles;
 
 	public enum Maptype {
 		roadmap, satellite, hybrid, terrain
@@ -69,11 +72,30 @@ public class StaticMap implements Serializable {
 	}
 
 	/**
-	 * @param zoom 1: World 5: Landmass/continent 10: City 15: Streets 20: Buildings
+	 * convenience method
+	 * 
+	 * @param zoom: 1: World 5: Landmass/continent 10: City 15: Streets 20:
+	 *              Buildings
 	 */
-	public void setLocation(Location center, int zoom) {
-		this.center = center;
+	public void setCenter(Location center, int zoom) {
+		setCenter(center);
+		setZoom(zoom);
+	}
+
+	/**
+	 * @param zoom: 1: World 5: Landmass/continent 10: City 15: Streets 20:
+	 *              Buildings
+	 */
+	public void setZoom(Integer zoom) {
 		this.zoom = zoom;
+	}
+
+	public Location getCenter() {
+		return center;
+	}
+
+	public void setCenter(Location center) {
+		this.center = center;
 	}
 
 	public int getWidth() {
@@ -111,6 +133,21 @@ public class StaticMap implements Serializable {
 		markers.add(marker);
 	}
 
+	public List<Location> getVisibles() {
+		return visibles;
+	}
+
+	public void setVisibles(List<Location> visibles) {
+		this.visibles = visibles;
+	}
+
+	public void addVisible(Location visible) {
+		if (visibles == null) {
+			visibles = new ArrayList<>();
+		}
+		visibles.add(visible);
+	}
+
 	public List<StaticPath> getPaths() {
 		return paths;
 	}
@@ -137,10 +174,10 @@ public class StaticMap implements Serializable {
 
 			// Dimensionen
 			builder.addParameter("size", width + "x" + height);
-			if (center != null && zoom != null) {
+			if (center != null)
 				builder.addParameter("center", center.toString());
+			if (zoom != null)
 				builder.addParameter("zoom", zoom.toString());
-			}
 			if (scale != 1)
 				builder.addParameter("scale", String.valueOf(scale));
 			if (maptype != null)
@@ -154,6 +191,12 @@ public class StaticMap implements Serializable {
 				for (StaticMarker marker : markers) {
 					builder.addParameter("markers", marker.toString());
 				}
+			}
+
+			if (visibles != null) {
+				builder.addParameter("visible", visibles.stream() //
+						.map(v -> v.toString()) //
+						.collect(Collectors.joining("|")));
 			}
 
 			if (paths != null) {
@@ -171,8 +214,11 @@ public class StaticMap implements Serializable {
 			if (apiKey != null)
 				builder.addParameter("key", apiKey);
 
-			if (locale != null && locale.getLanguage() != null)
-				builder.addParameter("language", locale.getLanguage());
+			if (language != null)
+				builder.addParameter("language", language);
+
+			if (region != null)
+				builder.addParameter("region", region);
 
 			String url = builder.build().toString();
 
@@ -225,12 +271,23 @@ public class StaticMap implements Serializable {
 		return markers != null && markers.size() > 0 || paths != null && paths.size() > 0;
 	}
 
-	public Locale getLocale() {
-		return locale;
+	/**
+	 * for backwards compatibility only
+	 * 
+	 * @see #setLangauge(Locale) and {@link #setRegion(Locale)}
+	 * @deprecated
+	 */
+	@Deprecated
+	public void setLocale(Locale locale) {
+		setLangauge(locale);
 	}
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
+	public void setLangauge(Locale locale) {
+		this.language = locale.getLanguage();
+	}
+
+	public void setRegion(Locale locale) {
+		this.region = locale.getCountry();
 	}
 
 	/**

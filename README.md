@@ -86,15 +86,15 @@ _map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&m
 ### Encoded Polyline
 
 ```java
-List<StaticLatLon> coords = new ArrayList<>();
-coords.add(new StaticLatLonImpl(40.800568, -73.958185));
-coords.add(new StaticLatLonImpl(40.796855, -73.949294));
-coords.add(new StaticLatLonImpl(40.764311, -73.973011));
-coords.add(new StaticLatLonImpl(40.768060, -73.981840));
-coords.add(new StaticLatLonImpl(40.800568, -73.958185));
+List<LatLon> coords = new ArrayList<>();
+coords.add(new LatLonImpl(40.800568, -73.958185));
+coords.add(new LatLonImpl(40.796855, -73.949294));
+coords.add(new LatLonImpl(40.764311, -73.973011));
+coords.add(new LatLonImpl(40.768060, -73.981840));
+coords.add(new LatLonImpl(40.800568, -73.958185));
 StaticPath centralPark = new StaticPath(coords);
-centralPark.setColor(StaticColor.red);
-centralPark.setFillColor("black");
+centralPark.setColor(Color.red);
+centralPark.setHexFillColor("000000");
 
 StaticMap map = new StaticMap(400, 200, googleApiKey);
 map.addPath(centralPark);
@@ -102,6 +102,20 @@ map.addPath(centralPark);
 ![Encoded Polyline](src/test/resources/encodedPolyline.png)
 
 _map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=color:red%7Cfillcolor:black%7Cenc:oz_xFr%7DkbMdVqv@jjEfsCmVdv@cjE%7BrC&key=*****`
+### Visible Area
+
+```java
+StaticMap map = new StaticMap(400, 200, googleApiKey);
+map.setMaptype(Maptype.hybrid);
+
+map.setCenter(new Location("Eiffeltower"));
+
+map.addVisible(new Location("Louvre"));
+map.addVisible(new Location("Arc de Triomphe"));
+```
+![Visible Area](src/test/resources/visibles.png)
+
+_map.toString():_ `https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&maptype=hybrid&visible=Louvre%7CArc+de+Triumph&key=*****`
 
 ### References
 

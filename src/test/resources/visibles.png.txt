@@ -1,0 +1,1 @@
+https://maps.googleapis.com/maps/api/staticmap?size=400x200&center=Eiffeltower&maptype=hybrid&visible=Louvre%7CArc+de+Triomphe&key=*****

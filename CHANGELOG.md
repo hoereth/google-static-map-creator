@@ -4,6 +4,8 @@ All notable changes to the google static map creator will be documented in this 
 ## [2.3.1-SNAPSHOT]
 ### Changed
 - Java requirement 7 -> 8
+### Added
+- StaticMap.visible
 
 ## [2.3.0]
 ### Fixed

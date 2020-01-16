@@ -34,7 +34,7 @@ public class ExampleCreator {
 	@Test
 	public void createLocation() throws ClientProtocolException, IOException {
 		StaticMap map = new StaticMap(400, 200, googleApiKey);
-		map.setLocation(new Location("Eiffeltower"), 16);
+		map.setCenter(new Location("Eiffeltower"), 16);
 		map.setMaptype(Maptype.hybrid);
 
 		create(map, "location.png");
@@ -83,12 +83,25 @@ public class ExampleCreator {
 		coords.add(new LatLonImpl(40.800568, -73.958185));
 		StaticPath centralPark = new StaticPath(coords);
 		centralPark.setColor(Color.red);
-		centralPark.setFillColor(Color.black);
+		centralPark.setHexFillColor("000000");
 
 		StaticMap map = new StaticMap(400, 200, googleApiKey);
 		map.addPath(centralPark);
 
 		create(map, "encodedPolyline.png");
+	}
+	
+	@Test
+	public void createVisibles() throws ClientProtocolException, IOException {
+		StaticMap map = new StaticMap(400, 200, googleApiKey);
+		map.setMaptype(Maptype.hybrid);
+
+		map.setCenter(new Location("Eiffeltower"));
+
+		map.addVisible(new Location("Louvre"));
+		map.addVisible(new Location("Arc de Triomphe"));
+
+		create(map, "visibles.png");
 	}
 
 	private void create(StaticMap map, String filename) throws ClientProtocolException, IOException {
