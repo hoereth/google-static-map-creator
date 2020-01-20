@@ -25,7 +25,7 @@ Add this dependency to your pom.xml (artifact available at Maven Central):
 
 Get yourself an API key for the *Maps Static API* from [Google API Dashboard](https://console.cloud.google.com/apis/).
 
-Now you are ready to create map urls by calling _de.pentabyte.googlemaps.StaticMap.toString()_.
+Now you are ready to create map urls by calling _[de.pentabyte.googlemaps.StaticMap](/src/main/java/de/pentabyte/googlemaps/StaticMap.java).toString()_.
 
 ## Examples
 
